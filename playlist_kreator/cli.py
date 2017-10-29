@@ -1,6 +1,8 @@
 import argparse
 import sys
+from getpass import getpass
 
+from playlist_kreator import gmusic
 from playlist_kreator import VERSION
 
 
@@ -9,7 +11,7 @@ def main(arguments):
         prog='playlist-kreator',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         description=(
-            'Create easily playlists\n'
+            'Create easily playlists. It only supports Google Music for now.\n'
             '\n'
             'Version: {}\n'
         ).format(VERSION),
@@ -37,19 +39,32 @@ def main(arguments):
 
     args = parser.parse_args(arguments)
 
-    try:
-        if args.command == 'version':
-            print(VERSION)
-        elif args.command == 'artists':
-            artists_command(args)
-        else:
-            parser.print_help()
-    except KeyboardInterrupt:
-        pass
+    if args.command == 'version':
+        print(VERSION)
+    elif args.command == 'artists':
+        artists_command(args)
+    else:
+        parser.print_help()
 
 
 def artists_command(args):
-    print(args)
+    print("It will need an email and an application password for Google Music")
+    print("You can set it up here: https://myaccount.google.com/apppasswords")
+
+    email = args.email
+    if email:
+        print("Email: {}".format(email))
+    else:
+        email = input("Email:")
+    password = getpass("Password:")
+
+    gmusic.create_playlist(
+        args.playlist_name,
+        args.artists_file,
+        email,
+        password,
+        max_top_tracks=args.max_songs_per_artist,
+    )
 
 
 if __name__ == '__main__':
