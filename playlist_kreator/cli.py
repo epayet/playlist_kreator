@@ -2,6 +2,7 @@ import argparse
 import sys
 from getpass import getpass
 
+from playlist_kreator.common import read_artists
 from playlist_kreator import gmusic
 from playlist_kreator import VERSION
 
@@ -48,23 +49,34 @@ def main(arguments):
 
 
 def artists_command(args):
+    artists = read_artists(args.artists_file)
+    print("Artists to look for: {}\n".format(artists))
+
+    email, password = get_email_password(args)
+
+    gmusic.create_playlist(
+        args.playlist_name,
+        artists,
+        email,
+        password,
+        max_top_tracks=args.max_songs_per_artist,
+    )
+
+
+def get_email_password(args):
     print("It will need an email and an application password for Google Music")
-    print("You can set it up here: https://myaccount.google.com/apppasswords")
+    print("You can set it up here: https://myaccount.google.com/apppasswords\n")
 
     email = args.email
     if email:
         print("Email: {}".format(email))
     else:
         email = input("Email:")
-    password = getpass("Password:")
 
-    gmusic.create_playlist(
-        args.playlist_name,
-        args.artists_file,
-        email,
-        password,
-        max_top_tracks=args.max_songs_per_artist,
-    )
+    password = getpass("Password:")
+    print()
+
+    return email, password
 
 
 if __name__ == '__main__':
