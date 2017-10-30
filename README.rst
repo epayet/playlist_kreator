@@ -39,7 +39,7 @@ Content of `big_four_thrash.txt`:
 Known limitations
 -----------------
 
-- Google Music needs an application password, you can set it here: <https://myaccount.google.com/apppasswords>
+- Google Music needs an application password, you can set it here: https://myaccount.google.com/apppasswords
 - Google Music has a limit of 1000 songs per playlist
 
 Inspiration
