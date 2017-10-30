@@ -39,6 +39,8 @@ Content of `big_four_thrash.txt`:
     Metallica
     Slayer
 
+You can find more examples in the ``example_artists`` folder
+
 Known limitations
 -----------------
 
