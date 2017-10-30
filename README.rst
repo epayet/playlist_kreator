@@ -7,12 +7,15 @@ It will use the number of top songs per artist you choose.
 
 Currently supported: Google Music.
 
-Installing
-----------
+Requirements
+------------
 
-TODO (is ffmpeg needed?)
-brew install ffmpeg
-python3?
+This project requires python 3+
+
+Installation
+------------
+
+TODO
 
 ::
 
