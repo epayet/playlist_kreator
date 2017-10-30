@@ -42,21 +42,21 @@ Known limitations
 - Google Music needs an application password, you can set it here: https://myaccount.google.com/apppasswords
 - Google Music has a limit of 1000 songs per playlist
 
+Contributing
+------------
+
+Pull requests are welcome!
+
+Running locally
+```````````````
+
+`pip install -r requirements.txt`
+
 Inspiration
 -----------
 
 Kreator is amazing. 🤘
 
 |Kreator|
-
-Contributing
-------------
-
-TODO
-
-License
--------
-
-TODO
 
 .. |Kreator| image:: http://kreator-terrorzone.de/images/releases/thumbs/cover_gods.jpg
