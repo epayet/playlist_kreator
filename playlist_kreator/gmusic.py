@@ -27,9 +27,8 @@ def create_playlist(playlist_name, artists, email, password, max_top_tracks=2):
                 print('{}: Found {} song(s). Will add'.format(artist_name, len(artist['topTracks'])))
 
     playlist_id = api.create_playlist(playlist_name)
-    print('\nCreated playlist {} ({})'.format(playlist_name, playlist_id))
-
+    print('\nCreated playlist "{}" ({})'.format(playlist_name, playlist_id))
+    
     api.add_songs_to_playlist(playlist_id, song_ids)
     print('Added {} songs to the playlist'.format(len(song_ids)))
-
-    print('All done, well done. Enjoy!')
+    print('All done. Enjoy! 🤘')
