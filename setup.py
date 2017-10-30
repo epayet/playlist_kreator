@@ -21,7 +21,7 @@ setup(
     description='Create playlists easily from a list of artists, using their top songs.',
     long_description=long_description,
     url='https://github.com/epayet/playlist_kreator',
-    author='Emmanuel payet',
+    author='Emmanuel Payet',
     author_email='contact@emmanuel-payet.me',
     license='MIT',
     # See https://pypi.python.org/pypi?%3Aaction=list_classifiers
@@ -39,4 +39,5 @@ setup(
     keywords='music googlemusic playlist',
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
     install_requires=requirements,
+    scripts=['bin/playlist-kreator'],
 )
