@@ -14,8 +14,6 @@ This project requires python 3+
 Installation
 ------------
 
-TODO
-
 ::
 
     pip install playlist-kreator
