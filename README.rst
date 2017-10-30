@@ -54,7 +54,9 @@ Pull requests are welcome!
 Running locally
 ```````````````
 
-`pip install -r requirements.txt`
+::
+
+    pip install -r requirements.txt
 
 Inspiration
 -----------
