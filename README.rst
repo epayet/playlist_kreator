@@ -59,4 +59,4 @@ License
 
 TODO
 
-.. |Kreator| image:: http://kreator-terrorzone.de/images/releases/thumbs/cover_gods.jpg
+.. |Kreator| image:: https://imagescdn.juno.co.uk/full/CS636517-01A-BIG.jpg
