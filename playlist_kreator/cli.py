@@ -2,9 +2,9 @@ import argparse
 import sys
 from getpass import getpass
 
-from playlist_kreator.common import read_artists
-from playlist_kreator import gmusic
+from playlist_kreator import providers
 from playlist_kreator import VERSION
+from playlist_kreator.common import read_artists
 
 
 def main(arguments):
@@ -12,7 +12,7 @@ def main(arguments):
         prog='playlist-kreator',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         description=(
-            'Create easily playlists. It only supports Google Music for now.\n'
+            'Create easily playlists.\n'
             '\n'
             'Version: {}\n'
         ).format(VERSION),
@@ -25,6 +25,12 @@ def main(arguments):
     )
     artists_parser.add_argument('artists_file', help='file with list of artists')
     artists_parser.add_argument('playlist_name', help='name of the playlist')
+    artists_parser.add_argument(
+        '--provider',
+        default='gmusic',
+        type=str,
+        help='Music Provider. Supported: gmusic, spotify',
+    )
     artists_parser.add_argument(
         '--max-songs-per-artist',
         default=2,
@@ -54,7 +60,8 @@ def artists_command(args):
 
     email, password = get_email_password(args)
 
-    gmusic.create_playlist(
+    music_provider = providers.get_provider(args.provider)
+    music_provider.create_playlist(
         args.playlist_name,
         artists,
         email,
