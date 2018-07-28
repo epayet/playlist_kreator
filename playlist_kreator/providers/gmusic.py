@@ -3,7 +3,7 @@ from gmusicapi import Mobileclient
 
 
 def create_playlist(playlist_name, artists, user_info, max_top_tracks=2):
-    email = user_info['email']
+    email = user_info['username']
     password = user_info['password']
 
     api = Mobileclient()
@@ -42,7 +42,7 @@ def get_user_info(args):
     print("It will need an email and an application password for Google Music")
     print("You can set it up here: https://myaccount.google.com/apppasswords\n")
 
-    email = args.email
+    email = args.username
     if email:
         print("Email: {}".format(email))
     else:

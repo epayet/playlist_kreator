@@ -14,6 +14,8 @@ def create_playlist(playlist_name, artists, user_info, max_top_tracks=2):
     playlist = sp.user_playlist_create(username, playlist_name)
     song_ids = []
 
+    print()
+
     for artist in artists:
         result = sp.search(artist, limit=1, type='artist')
         if len(result['artists']['items']) == 0:
@@ -38,8 +40,7 @@ def create_playlist(playlist_name, artists, user_info, max_top_tracks=2):
 
 
 def get_user_info(args):
-    # TODO rename email to username
-    username = args.email
+    username = args.username
     if username:
         print("Username: {}".format(username))
     else:

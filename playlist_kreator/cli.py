@@ -37,8 +37,8 @@ def main(arguments):
         help='max number of songs per artist',
     )
     artists_parser.add_argument(
-        '--email',
-        help='optional email, if not set you will be asked in the prompt',
+        '--username',
+        help='optional username/email, if not set you will be asked in the prompt',
     )
 
     subparsers.add_parser('version', help="Print playlist-kreator Version")
