@@ -1,3 +1,12 @@
+.PHONY: build test
+
+build:
+	pip install -r requirements.txt
+	pip install -r build-requirements.txt
+
+test:
+	pytest tests
+
 compile-requirements:
 	pip-compile  --no-index -o requirements.txt requirements.in constraints.txt
 	@sed -i.bak 's/#    pip-compile.*/#    make compile-requirements/g' requirements.txt

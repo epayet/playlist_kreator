@@ -3,7 +3,7 @@ import sys
 
 from playlist_kreator import providers
 from playlist_kreator import VERSION
-from playlist_kreator.common import read_artists
+from playlist_kreator.util import read_artists, FileReader
 
 
 def main(arguments):
@@ -54,7 +54,7 @@ def main(arguments):
 
 
 def artists_command(args):
-    artists = read_artists(args.artists_file)
+    artists = read_artists(FileReader(args.artists_file))
     print("Artists to look for: {}\n".format(artists))
 
     music_provider = providers.get_provider(args.provider)
