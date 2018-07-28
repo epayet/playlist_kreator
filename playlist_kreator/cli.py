@@ -1,10 +1,9 @@
 import argparse
 import sys
-from getpass import getpass
 
-from playlist_kreator.common import read_artists
-from playlist_kreator import gmusic
+from playlist_kreator import providers
 from playlist_kreator import VERSION
+from playlist_kreator.common import read_artists
 
 
 def main(arguments):
@@ -12,7 +11,7 @@ def main(arguments):
         prog='playlist-kreator',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         description=(
-            'Create easily playlists. It only supports Google Music for now.\n'
+            'Create easily playlists.\n'
             '\n'
             'Version: {}\n'
         ).format(VERSION),
@@ -26,14 +25,20 @@ def main(arguments):
     artists_parser.add_argument('artists_file', help='file with list of artists')
     artists_parser.add_argument('playlist_name', help='name of the playlist')
     artists_parser.add_argument(
+        '--provider',
+        default='gmusic',
+        type=str,
+        help='Music Provider. Supported: gmusic, spotify',
+    )
+    artists_parser.add_argument(
         '--max-songs-per-artist',
         default=2,
         type=int,
         help='max number of songs per artist',
     )
     artists_parser.add_argument(
-        '--email',
-        help='optional email, if not set you will be asked in the prompt',
+        '--username',
+        help='optional username/email, if not set you will be asked in the prompt',
     )
 
     subparsers.add_parser('version', help="Print playlist-kreator Version")
@@ -52,31 +57,15 @@ def artists_command(args):
     artists = read_artists(args.artists_file)
     print("Artists to look for: {}\n".format(artists))
 
-    email, password = get_email_password(args)
+    music_provider = providers.get_provider(args.provider)
 
-    gmusic.create_playlist(
+    user_info = music_provider.get_user_info(args)
+    music_provider.create_playlist(
         args.playlist_name,
         artists,
-        email,
-        password,
+        user_info,
         max_top_tracks=args.max_songs_per_artist,
     )
-
-
-def get_email_password(args):
-    print("It will need an email and an application password for Google Music")
-    print("You can set it up here: https://myaccount.google.com/apppasswords\n")
-
-    email = args.email
-    if email:
-        print("Email: {}".format(email))
-    else:
-        email = input("Email:")
-
-    password = getpass("Password:")
-    print()
-
-    return email, password
 
 
 if __name__ == '__main__':
