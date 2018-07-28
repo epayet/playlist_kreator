@@ -1,8 +1,8 @@
 import argparse
 import sys
 
-from playlist_kreator import providers
 from playlist_kreator import VERSION
+from playlist_kreator import providers
 from playlist_kreator.util import read_artists, FileReader
 
 

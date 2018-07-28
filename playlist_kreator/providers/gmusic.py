@@ -1,4 +1,5 @@
 from getpass import getpass
+
 from gmusicapi import Mobileclient
 
 from playlist_kreator.providers.base import BaseProvider

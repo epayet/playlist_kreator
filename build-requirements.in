@@ -1,3 +1,4 @@
 pip-tools
 twine
 pytest
+flake8

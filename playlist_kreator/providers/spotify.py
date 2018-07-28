@@ -2,8 +2,8 @@ import webbrowser
 
 import spotipy
 from furl import furl
-from playlist_kreator.providers.base import BaseProvider
 
+from playlist_kreator.providers.base import BaseProvider
 
 # This is the playlist-kreator app client id, we don't need the secret, as we do client side auth
 SPOTIFY_CLIENT_ID = 'b1c5cfc647d146e0955db636cf387132'
@@ -32,7 +32,9 @@ class SpotifyProvider(BaseProvider):
         i = 0
         nb_tracks = len(song_ids)
         while i * max_tracks_per_request < nb_tracks:
-            subsong_ids = song_ids[i * max_tracks_per_request:i * max_tracks_per_request + max_tracks_per_request]
+            start = i * max_tracks_per_request
+            end = i * max_tracks_per_request + max_tracks_per_request
+            subsong_ids = song_ids[start:end]
             self.spotify_api.user_playlist_add_tracks(username, playlist_id, subsong_ids)
             i += 1
 
@@ -41,8 +43,8 @@ class SpotifyProvider(BaseProvider):
         if username:
             print("Username: {}".format(username))
         else:
-            print(
-                "You will need your spotify username. You can get it from: https://www.spotify.com/us/account/overview/")
+            print("""You will need your spotify username.
+            You can get it from: https://www.spotify.com/us/account/overview/""")
             username = input("Username: ")
 
         auth_url = self._get_auth_url()
@@ -58,7 +60,8 @@ class SpotifyProvider(BaseProvider):
 
         redirect_url = input('Enter the URL you were redirected to: ')
         # Why #??
-        redirect_furl = furl(redirect_url.replace('callback/#access_token', 'callback/?access_token'))
+        redirect_url = redirect_url.replace('callback/#access_token', 'callback/?access_token')
+        redirect_furl = furl(redirect_url)
         token = redirect_furl.args['access_token']
 
         self.user_info = {
