@@ -1,15 +1,5 @@
 from contextlib import contextmanager
 
-from playlist_kreator.util import read_artists
-
-
-def test_read_artists():
-    file_reader = FakeFileReader("Anthrax\nMegadeth\nMetallica\nSlayer")
-
-    artists = read_artists(file_reader)
-
-    assert artists == ["Anthrax", "Megadeth", "Metallica", "Slayer"]
-
 
 class FakeFileReader:
     def __init__(self, file_content):

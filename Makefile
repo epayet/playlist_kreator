@@ -4,8 +4,13 @@ build:
 	pip install -r requirements.txt
 	pip install -r build-requirements.txt
 
-test:
-	pytest tests
+test: unit-test integration-test
+
+unit-test:
+	pytest tests/unit
+
+integration-test:
+	pytest tests/integration
 
 compile-requirements:
 	pip-compile  --no-index -o requirements.txt requirements.in constraints.txt
