@@ -4,7 +4,7 @@ Playlist Kreator
 
 Create playlists easily from a list of artists, using their top songs.
 
-Currently supported: Google Music.
+Currently supported: Spotify, Google Music.
 
 Requirements
 ------------
