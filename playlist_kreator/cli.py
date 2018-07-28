@@ -58,12 +58,10 @@ def artists_command(args):
     print("Artists to look for: {}\n".format(artists))
 
     music_provider = providers.get_provider(args.provider)
-
-    user_info = music_provider.get_user_info(args)
-    music_provider.create_playlist(
+    music_provider.get_user_info(args)
+    music_provider.create_playlist_from_top_songs(
         args.playlist_name,
         artists,
-        user_info,
         max_top_tracks=args.max_songs_per_artist,
     )
 

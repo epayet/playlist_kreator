@@ -1,8 +1,9 @@
-from playlist_kreator.providers import gmusic, spotify
+from playlist_kreator.providers.gmusic import GMusicProvider
+from playlist_kreator.providers.spotify import SpotifyProvider
 
 PROVIDERS = {
-    'gmusic': gmusic,
-    'spotify': spotify,
+    'gmusic': GMusicProvider(),
+    'spotify': SpotifyProvider(),
 }
 
 
